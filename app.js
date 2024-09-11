@@ -1,7 +1,7 @@
 const express = require ("express");
 const mongoose = require ("mongoose");
 const app = express ();
-const { unknownRoute, getBase, createUser, fetchUsers, deleteUser, updateUser, } = require("./controllers");
+const { unknownRoute, getBase, createUser, fetchUsers, deleteUser, updateUser, createBlog, fetchAllBlogs, fetchBlogById, updateBlog, deleteBlog } = require("./controllers");
 const { validateSignupdata, validateLogindata, isTokenValid, } = require("./controllers/validators/auth.validators");
 const { loginUser, signupUser } = require("./controllers/auth.controllers");
 const session = require("express-session");
@@ -83,9 +83,14 @@ app.use(
 
 app.get("/", getBase);
 app.post("/user", validateSignupdata, createUser);
+app.post("/blog", createBlog);
 app.get("/user", validateLogindata, fetchUsers);
+app.get("/blog", fetchAllBlogs);
+app.get("/blog", fetchBlogById);
 app.delete("/user", deleteUser);
+app.delete("/blog", deleteBlog);
 app.put("/user/:id", updateUser);
+app.put("/blog/:id", updateBlog);
 app.post("/signup", validateSignupdata, signupUser);
 app.post("/login", validateLogindata, loginUser);
 app.post("/post", isTokenValid, (req, res) => {try {
@@ -100,11 +105,12 @@ app.all("*", unknownRoute);
 
 app.listen (PORT, async () => {
     try {
-        
+        console.log("server is running on port");
         await mongoose.connect( process.env.DB_URL );
-
+        console.log("db connected successfully");
     } catch (error) {
-         
+         console.log("server error");
+         console.log(error)
     }
     
 });

@@ -3,3 +3,5 @@
 
 ./env_folder
 /env_folder
+./.env
+/.env

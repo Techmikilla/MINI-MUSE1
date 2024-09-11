@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID, // google client id
       clientSecret: process.env.GOOGLE_CLIENT_SECRET, // google client secret
-      callbackURL: "http://localhost:9898/googleSignup-redirect",
+      callbackURL: "https://mini-muse1.onrender.com/googleSignup-redirect",
       passReqToCallback: true,
     },
 

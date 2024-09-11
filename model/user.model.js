@@ -9,7 +9,17 @@ const userSchema = new mongoose.Schema(
         required: true,
     },
 
-    userbio: {
+    age: {
+        type: Number,
+        required: false,
+    },
+
+    goals: {
+        type: String,
+        required: false,
+    },
+
+    bio: {
         type: String,
         required: false,
     },
