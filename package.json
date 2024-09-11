@@ -1,0 +1,26 @@
+{
+    "name": "mini-muse",
+    "version": "1.0.0",
+    "description": "A mini social media web application for sharing thoughts, learning, and building networks",
+    "main": "app.js",
+    "scripts": {
+        "test": "npm start",
+        "start": "nodemon app.js"
+    },
+    "author": "Miracle Okwusogu (Techmikilla)",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "bcryptjs": "^2.4.3",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "express-session": "^1.18.0",
+        "google-auth-library": "^9.14.1",
+        "joi": "^17.13.3",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^8.6.1",
+        "passport": "^0.7.0",
+        "passport-google-oauth20": "^2.0.0",
+        "start": "^5.1.0"
+    }
+}
