@@ -1,9 +1,15 @@
 const express = require ("express");
 const mongoose = require ("mongoose");
 const app = express ();
-const { unknownRoute, getBase, createUser, fetchUsers, deleteUser, updateUser, createBlog, fetchAllBlogs, fetchBlogById, updateBlog, deleteBlog } = require("./controllers");
+const { unknownRoute, getBase, createUser, fetchUsers, deleteUser, updateUser, updateBlog, deleteBlog } = require("./controllers");
 const { validateSignupdata, validateLogindata, isTokenValid, } = require("./controllers/validators/auth.validators");
 const { loginUser, signupUser } = require("./controllers/auth.controllers");
+const {
+  createBlog,
+  fetchBlogById,
+  fetchAllBlog,
+  fetchUserblogById,
+} = require("./controllers/blog.controller.js");
 const session = require("express-session");
 const User = require("./model/user.model.js");
 const passport = require("passport");
@@ -84,11 +90,12 @@ app.use(
 app.get("/", getBase);
 app.post("/user", validateSignupdata, createUser);
 app.post("/blog", createBlog);
-app.get("/user", validateLogindata, fetchUsers);
-app.get("/blog", fetchAllBlogs);
-app.get("/blog", fetchBlogById);
-app.delete("/user", deleteUser);
-app.delete("/blog", deleteBlog);
+app.get("/users", validateLogindata, fetchUsers);
+app.get("/blog", fetchAllBlog);
+app.get("/user/:id", fetchUserblogById);
+app.get("/blog/:id", fetchBlogById);
+app.delete("/userdel", deleteUser);
+app.delete("/blogdel", deleteBlog);
 app.put("/user/:id", updateUser);
 app.put("/blog/:id", updateBlog);
 app.post("/signup", validateSignupdata, signupUser);

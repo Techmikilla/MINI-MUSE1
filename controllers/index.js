@@ -79,55 +79,55 @@ async function fetchUsers (req, res) {
     }
 };
 
-async function createBlog(req, res) {
-    try {
-            let blog = new Blog(req.body);
-            await blog.save();
-            res.status(201).json({
-                message: "blog created", blog
-            });
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            message: "server error"
-        });
-    }
-}
+// async function createBlog(req, res) {
+//     try {
+//             let blog = new Blog(req.body);
+//             await blog.save();
+//             res.status(201).json({
+//                 message: "blog created", blog
+//             });
+//     } catch (error) {
+//         console.log(error)
+//         res.status(500).json({
+//             message: "server error"
+//         });
+//     }
+// }
 
-async function fetchAllBlogs(req, res) {
-    try {
-        let blogs = await Blog.find()
-        res.status(200).json({message: "blogs fetched", blogs});
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            message: "server error"
-        });
-    }
-}
+// async function fetchAllBlogs(req, res) {
+//     try {
+//         let blogs = await Blog.find()
+//         res.status(200).json({message: "blogs fetched", blogs});
+//     } catch (error) {
+//         console.log(error)
+//         res.status(500).json({
+//             message: "server error"
+//         });
+//     }
+// }
 
-async function fetchBlogById(req, res) {
-    try {
-        let blog = await Blog.findById(req.params.id)
-        res.status(200).json({
-            message: "blog fetched by id", blog
-        });
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            message: "server error"
-        });
-    }
-}
+// async function fetchBlogById(req, res) {
+//     try {
+//         let blog = await Blog.findById(req.params.id)
+//         res.status(200).json({
+//             message: "blog fetched by id", blog
+//         });
+//     } catch (error) {
+//         console.log(error)
+//         res.status(500).json({
+//             message: "server error"
+//         });
+//     }
+// }
 
 async function updateBlog(req, res) {
     try {
         let blogExists = await Blog.findById(req.params.id);
         if (blogExists) {
-            await blogExists.updateOne(req.body);
+            let newupdate = await blogExists.updateOne(req.body);
             res.status(201).json({
                 message: "blog updated",
-                blogExists
+                newupdate
             });
         } else {
             res.status(404).json({
@@ -175,4 +175,4 @@ async function unknownRoute (req, res) {
 
 
 
-module.exports = { unknownRoute, getBase, createUser, fetchUsers, deleteUser, updateUser, createBlog, fetchAllBlogs, fetchBlogById, updateBlog, deleteBlog};
+module.exports = { unknownRoute, getBase, createUser, fetchUsers, deleteUser, updateUser, updateBlog, deleteBlog};

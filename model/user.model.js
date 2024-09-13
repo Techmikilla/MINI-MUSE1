@@ -39,6 +39,12 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+userSchema.virtual("blogs", {
+    ref: "Blog",
+    localField: "_id",
+    foreignField: "author",
+  });
+
 userSchema.pre("save", function() {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(this.password, salt);
