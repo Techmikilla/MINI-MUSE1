@@ -90,7 +90,7 @@ app.use(
 app.get("/", getBase);
 app.post("/user", validateSignupdata, createUser);
 app.post("/blog", createBlog);
-app.get("/users", validateLogindata, fetchUsers);
+app.get("/users", fetchUsers);
 app.get("/blog", fetchAllBlog);
 app.get("/user/:id", fetchUserblogById);
 app.get("/blog/:id", fetchBlogById);
