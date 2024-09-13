@@ -94,7 +94,7 @@ app.get("/users", fetchUsers);
 app.get("/blog", fetchAllBlog);
 app.get("/user/:id", fetchUserblogById);
 app.get("/blog/:id", fetchBlogById);
-app.delete("/userdel", deleteUser);
+app.delete("/userdel", isTokenValid, deleteUser);
 app.delete("/blogdel", deleteBlog);
 app.put("/user/:id", updateUser);
 app.put("/blog/:id", updateBlog);
